@@ -1,0 +1,22 @@
+{
+  "name": "estoque-app",
+  "version": "1.0.0",
+  "description": "Sistema de Controle de Estoque - Desenvolvimento de Projetos II (UniFil)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "db:init": "node src/initDb.js",
+    "test": "node --test tests/api.test.js"
+  },
+  "keywords": ["crud", "estoque", "express", "postgresql"],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "pg": "^8.13.1"
+  }
+}

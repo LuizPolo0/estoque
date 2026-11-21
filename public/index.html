@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controle de Estoque</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Controle de Estoque</h1>
+    <nav>
+      <button class="tab ativo" data-aba="painel">Painel</button>
+      <button class="tab" data-aba="produtos">Produtos</button>
+      <button class="tab" data-aba="categorias">Categorias</button>
+      <button class="tab" data-aba="fornecedores">Fornecedores</button>
+      <button class="tab" data-aba="movimentacoes">Movimentações</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="painel" class="aba ativa">
+      <div class="cards" id="cards-resumo"></div>
+      <div class="duas-colunas">
+        <div>
+          <h2>Produtos abaixo do estoque mínimo</h2>
+          <table><thead><tr><th>Código</th><th>Produto</th><th class="num">Saldo</th><th class="num">Mínimo</th><th>Fornecedor</th></tr></thead>
+            <tbody id="tb-alertas"></tbody></table>
+        </div>
+        <div>
+          <h2>Estoque por categoria</h2>
+          <table><thead><tr><th>Categoria</th><th class="num">Produtos</th><th class="num">Itens</th><th class="num">Valor</th></tr></thead>
+            <tbody id="tb-por-categoria"></tbody></table>
+        </div>
+      </div>
+    </section>
+
+    <section id="produtos" class="aba">
+      <div class="barra">
+        <input type="search" id="busca-produtos" placeholder="Buscar por nome ou código..." />
+        <button class="primario" onclick="abrirForm('produtos')">+ Novo produto</button>
+      </div>
+      <table><thead><tr><th>Código</th><th>Nome</th><th>Categoria</th><th>Fornecedor</th><th class="num">Preço</th><th class="num">Saldo</th><th class="num">Mín.</th><th></th></tr></thead>
+        <tbody id="tb-produtos"></tbody></table>
+    </section>
+
+    <section id="categorias" class="aba">
+      <div class="barra">
+        <input type="search" id="busca-categorias" placeholder="Buscar categoria..." />
+        <button class="primario" onclick="abrirForm('categorias')">+ Nova categoria</button>
+      </div>
+      <table><thead><tr><th>Nome</th><th>Descrição</th><th class="num">Produtos</th><th></th></tr></thead>
+        <tbody id="tb-categorias"></tbody></table>
+    </section>
+
+    <section id="fornecedores" class="aba">
+      <div class="barra">
+        <input type="search" id="busca-fornecedores" placeholder="Buscar por nome ou CNPJ..." />
+        <button class="primario" onclick="abrirForm('fornecedores')">+ Novo fornecedor</button>
+      </div>
+      <table><thead><tr><th>Nome</th><th>CNPJ</th><th>E-mail</th><th>Telefone</th><th></th></tr></thead>
+        <tbody id="tb-fornecedores"></tbody></table>
+    </section>
+
+    <section id="movimentacoes" class="aba">
+      <div class="barra">
+        <select id="filtro-tipo">
+          <option value="">Todos os tipos</option>
+          <option value="ENTRADA">Entradas</option>
+          <option value="SAIDA">Saídas</option>
+        </select>
+        <button class="primario" onclick="abrirForm('movimentacoes')">+ Registrar movimentação</button>
+      </div>
+      <table><thead><tr><th>Data</th><th>Produto</th><th>Tipo</th><th class="num">Qtd.</th><th>Observação</th><th></th></tr></thead>
+        <tbody id="tb-movimentacoes"></tbody></table>
+    </section>
+  </main>
+
+  <dialog id="modal">
+    <form id="form" method="dialog">
+      <h2 id="form-titulo"></h2>
+      <div id="form-campos"></div>
+      <p id="form-erro" class="erro"></p>
+      <div class="acoes">
+        <button type="button" onclick="fecharModal()">Cancelar</button>
+        <button type="submit" class="primario">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
